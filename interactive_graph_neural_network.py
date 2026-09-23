@@ -488,7 +488,7 @@ def contribution_figure(rec, cfg, dim_names):
         hovertemplate="aggregate %{x} = %{y:.3f}<extra></extra>",
     ))
     fig.update_layout(
-        template=PLOT_TEMPLATE, barmode="relative", height=300,
+        template=PLOT_TEMPLATE, barmode="relative", height=300, bargap=0.55,
         margin=dict(l=10, r=10, t=30, b=10),
         yaxis_title="value", legend=dict(orientation="h", y=1.12, x=0),
     )
