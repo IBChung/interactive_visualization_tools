@@ -1,5 +1,6 @@
-streamlit>=1.32
+streamlit>=1.64
 numpy
 scipy
 scikit-learn
 plotly
+pandas
