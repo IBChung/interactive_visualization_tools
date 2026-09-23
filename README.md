@@ -106,6 +106,14 @@ the design decisions:
 5. **No training loop.** Optimization is a separate subject; putting a loss curve on screen
    pulls attention away from the mechanism being explained.
 
+## Licence
+
+[GNU Affero General Public License v3.0](LICENSE) — free to read, run, modify and
+share. The one obligation that matters for tools like these: if you deploy a modified
+version as a web app, you have to make your source available to its users too.
+
+If you use these in teaching or research, a citation or a link back is appreciated.
+
 ## Adding a tool
 
 1. Name the file `interactive_<topic>.py` and keep it self-contained — one file per tool.
