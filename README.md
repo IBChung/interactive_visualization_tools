@@ -13,6 +13,7 @@ not to run a method at scale, but to see exactly what it does on each step.
 | --- | --- | --- |
 | [Bayesian Optimization Explorer](#bayesian-optimization-explorer) | How a surrogate model and an acquisition function decide where to sample next | `streamlit run interactive_bayesian_optimization.py` |
 | [Graph Neural Network Explorer](#graph-neural-network-explorer) | How one GNN layer turns a neighbourhood into a new node embedding | `streamlit run interactive_graph_neural_network.py` |
+| [Optimization Algorithms Explorer](#optimization-algorithms-explorer) | How gradient-based and nature-inspired algorithms move through a design space, one step at a time | `streamlit run interactive_optimization_algorithms.py` |
 
 ---
 
@@ -73,6 +74,39 @@ Four tabs: **1. Graph & features → 2. Step through a node → 3. All layers �
 
 ---
 
+## Optimization Algorithms Explorer
+
+![A 2D contour plot of the Rastrigin function with a faded previous generation of points, a bright current generation coloured by fitness, and a yellow dashed line tracing the best point found across generations](assets/optimization_algorithms.png)
+
+Pick a 1D or 2D test function, then watch an optimizer cross it one step at a
+time. Derivative-based methods move a single point along a trajectory with an
+arrow for the latest step; nature-inspired methods evolve a population, shown
+as a bright current generation over a faded previous one, with the best point
+found so far traced as a dashed path.
+
+- **Test functions** — a convex bowl, a double well and a rugged many-minima
+  curve in 1D; sphere, Rosenbrock and Rastrigin in 2D; or your own expression,
+  with the global minimum located by grid search for reference
+- **Derivative-based** — Gradient Descent, Newton-Raphson and Adam, each with
+  its update equation shown alongside live sliders for its parameters.
+  Gradients and Hessians are computed by central finite differences, so a
+  custom expression gets exact derivative-based treatment for free
+- **Nature-inspired** — a real-coded Genetic Algorithm (tournament selection,
+  blend crossover, Gaussian mutation), Particle Swarm Optimization, and
+  Differential Evolution, each with population size and its own operator
+  parameters as sliders
+- **The update, made visible** — for a chosen individual, the exact mechanism
+  that produced it: parent-to-child crossover and mutation for the GA, the
+  chained inertia/cognitive/social velocity components for PSO, and the
+  base-plus-scaled-difference construction of the mutant vector for DE
+- **History** — f(x) and gradient norm per iteration for derivative-based
+  runs; best-so-far, population mean, and population diversity per generation
+  for nature-inspired ones
+
+Three tabs, in order: **1. Problem → 2. Optimize → 3. History**.
+
+---
+
 ## Running locally
 
 ```bash
@@ -103,8 +137,10 @@ the design decisions:
    between the inputs and the output.
 4. **Deterministic.** Fixed graphs, seeded samples and pinned layouts, so changing one
    control changes exactly one thing.
-5. **No training loop.** Optimization is a separate subject; putting a loss curve on screen
-   pulls attention away from the mechanism being explained.
+5. **No training loop, unless the loop is the subject.** For a model explorer (GP, GNN),
+   putting a loss curve on screen pulls attention away from the mechanism being explained,
+   so none is shown. For an optimizer explorer, the loop *is* the mechanism, so it is the
+   whole app — shown one step at a time, the same way everything else here is.
 
 ## Licence
 
